@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Chat</title>
+</head>
+<body>
+<h1>Logged in as {{username}}</h1>
+
+<hr />
+
+
+	<ul class="rooms">
+	<h3>Available Rooms:</h3>
+	{% for room in chatrooms %}
+		<li><a href="{{ url_for('room', room_id=room.room_id) }}">{{ room }}</a>
+            <br />
+            {% if username == room.username %}
+      <form action="" method="post">
+		  	<input type="hidden"  name="user" value="{{username}}">
+            <input type="hidden"  name="roomToDelete" value="{{room.room_id}}">
+            <input type="submit" name="btn" value="Delete">
+      </form>
+            {% endif %}
+	{% else %}
+		<li><b>No chat rooms available</b>
+	{% endfor %}
+	</ul>
+
+	<h2>Create new chat room:</h2>
+	<form action="{{ url_for('create_room') }}" method="post">
+		<dl>
+		<dt><b>Chatroom Name:</b>
+		<dd><input type="text" name="roomname">
+		<dd><input class="button" type="submit" value="Create New Room">
+		</dl>
+	</form>
+
+<br />
+<hr />
+<br />
+
+<form action="/" method="get">
+    <button type="submit">Log Out</button>
+</form>
+
+</body>
+</html>

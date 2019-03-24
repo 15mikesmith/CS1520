@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Chat</title>
+</head>
+<body>
+
+  <script type="text/javascript" src="{{ url_for('static', filename='ajax.js') }}"></script>
+
+	<h2>In Room: {{ chatroom.room_name }}</h2>
+
+	{# <h3>Logged in as <span id="username"> {{ username }} </span></h3> #}
+
+	<table id="message_list">
+		{% for message in chatroom.messages %}
+			<tr><td>{{ message.username + " : " + message.message_text }}</td></tr>
+		{% endfor %}
+	</table>
+
+	<h4> Send a message: </h4>
+	<form name="messageForm">
+		<input type="text" id="new_message" name="new_message" value="" width="70"/>
+		<input type="button" id="submit_message" value="Post Message" />
+	</form>
+
+ <br />
+<hr />
+<br />
+
+ 	<a href="{{ url_for('room_list') }}">Leave Chat Room</a>
+
+
+<br />
+<hr />
+<br />
+
+<form action="/" method="get">
+    <button type="submit">Log Out</button>
+</form>
+
+
+</body>
+</html>
