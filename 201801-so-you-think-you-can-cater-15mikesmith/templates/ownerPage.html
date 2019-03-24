@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<h1>Logged in as {{username}}</h1>
+
+<hr />
+
+<h2>Scheduled Events</h2>
+<ul>
+
+    {% if(events|length) == 0 %}
+    <p>No events scheduled </p>
+    {% endif %}
+
+    {% for event in events %}
+
+    <li>
+        <p>{{ event.date }}</p>
+        <ol>
+            {% if (None == event.worker1) and (None == event.worker2) and (None == event.worker3) %}
+            <p>No staff signed up to work</p>
+
+            {% else %}
+            <li>{{ event.worker1 }}</li>
+            <li>{{ event.worker2 }}</li>
+            <li>{{ event.worker3 }}</li>
+            {% endif %}
+        </ol>
+    </li>
+
+    {% endfor %}
+</ul>
+
+<hr />
+
+
+<h2>Create Staff Account</h2>
+
+
+<form action="" method="post">
+
+    <input type="text" placeholder="Enter a name" name="staffName" value="{{
+          request.form.staffName }}">
+
+    <input type="text" placeholder="Enter a password" name="staffPw" value="{{
+          request.form.staffPw }}">
+
+    <input class="btn btn-default" type="submit" value="Submit">
+
+</form>
+
+    {% if(msg|length) != 0 %}
+    <p>{{msg}} </p>
+    {% endif %}
+
+{% if error %}
+<p class="error"><strong>Error:</strong> {{ error }}
+    {% endif %}
+
+<br />
+<hr />
+<br />
+
+<form action="/" method="get">
+    <button type="submit">Log Out</button>
+</form>
+
+</body>
+</html>

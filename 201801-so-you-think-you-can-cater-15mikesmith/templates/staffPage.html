@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<h1>Logged in as {{username}}</h1>
+
+<hr />
+
+<h2>Scheduled Events</h2>
+<ul>
+    {% for event in events %}
+
+    {% if (username == event.worker1) or (username == event.worker2) or (username == event.worker3) %}
+    <li>
+        <p>{{ event.date }}</p>
+    </li>
+    {% endif %}
+
+    {% endfor %}
+</ul>
+
+<hr />
+
+<h2>Available Events</h2>
+
+    {% for event in events %}
+
+    {% if ((username != event.worker1) and (username != event.worker2) and (username != event.worker3)) and (( event.worker1 is none) or ( event.worker2 is none) or (event.worker3 is none)) %}
+    <li>
+        <p>{{ event.date }}</p>
+
+
+        <form action="" method="post">
+                    <input type="hidden"  name="eventToSignUp" value="{{event.date}}">
+            <input type="submit" name="btn" value="Sign Up">
+      </form>
+
+
+    </li>
+    {% endif %}
+
+    {% endfor %}
+
+<br />
+<hr />
+<br />
+
+<form action="/" method="get">
+    <button type="submit">Log Out</button>
+</form>
+
+</body>
+</html>

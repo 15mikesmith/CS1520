@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<h1>Logged in as {{username}}</h1>
+
+<hr />
+
+<h2>Scheduled Events</h2>
+<ul>
+    {% for event in events %}
+
+    {% if username == event.customer %}
+    <li>
+        <p>{{event.date}}</p>
+
+        <form action="" method="post">
+                    <input type="hidden"  name="eventToDelete" value="{{event.date}}">
+            <input type="submit" name="btn" value="Cancel">
+      </form>
+
+    </li>
+    {%endif%}
+
+    {% endfor %}
+</ul>
+
+<hr />
+
+
+
+<h2>Request an Event</h2>
+
+      <form action="" method="post">
+
+        <input type="text" placeholder="dd/mm/yyyy" name="eventDate" value="{{
+          request.form.eventDate }}">
+
+        <input class="btn btn-default" name="btn" type="submit" value="Submit">
+      </form>
+
+    {% if(msg|length) != 0 %}
+    <p>{{msg}} </p>
+    {% endif %}
+
+      {% if error %}
+        <p class="error"><strong>Error:</strong> {{ error }}
+      {% endif %}
+
+<br />
+<hr />
+<br />
+
+<form action="/" method="get">
+    <button type="submit">Log Out</button>
+</form>
+
+</body>
+</html>
