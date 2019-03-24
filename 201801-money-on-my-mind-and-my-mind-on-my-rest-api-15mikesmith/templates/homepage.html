@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>RESTful Purchase list with AJAJ!</title>
+		<script type="text/javascript" src="{{ url_for('static', filename='script.js') }}"></script>
+	</head>
+	<body>
+		<table id="theTable">
+		</table>
+		<hr/>
+		<h2>Budget Categories</h2>
+		<table id="theTable2">
+		</table>
+
+		<hr/>
+
+		<h3> Add new Category: </h3>
+		<form name="theForm">
+			<p>Enter Category Name:</p><input type="text" id="catName" name="" value="" />
+
+			<p>Enter Monthly Limit:</p><input type="text" id="catAmount" name="" value="" />
+
+			<input type="button" id="theButton2" value="Add" />
+		</form>
+
+		<hr/>
+
+
+		<h3> Submit new purchase: </h3>
+		<form name="theForm">
+			<p>Enter Name:</p><input type="text" id="newName" name="" value="" />
+			<p>Enter Amount:</p><input type="text" id="newAmount" name="" value="" />
+			<p>Enter Category:</p><input type="text" id="newCategory" name="" value="" />
+			<p>Enter Date:</p><input type="text" id="newDate" name="" value="" />
+
+
+			<input type="button" id="theButton" value="Add" />
+		</form>
+	</body>
+</html>
+
